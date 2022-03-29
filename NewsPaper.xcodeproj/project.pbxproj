@@ -99,9 +99,9 @@
 		DB616C7E27F1E3F1008B462A /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				DB616C7F27F1E436008B462A /* Setting.swift */,
-				DB616C8227F1E4B5008B462A /* NewsPaperApiKey.swift */,
 				DB616C8827F1E7DA008B462A /* GetApiKey.swift */,
+				DB616C8227F1E4B5008B462A /* NewsPaperApiKey.swift */,
+				DB616C7F27F1E436008B462A /* Setting.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
