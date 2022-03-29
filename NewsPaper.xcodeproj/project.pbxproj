@@ -69,12 +69,12 @@
 		DB616C5C27F1A934008B462A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				DB616C7E27F1E3F1008B462A /* Setting */,
+				DB616C5F27F1A936008B462A /* Assets.xcassets */,
 				DB616C5D27F1A934008B462A /* NewsPaperApp.swift */,
 				DB616C5E27F1A934008B462A /* NewsPaper.swift */,
-				DB616C5F27F1A936008B462A /* Assets.xcassets */,
 				DB616C7B27F1ABB3008B462A /* News.swift */,
 				DB616C8527F1E521008B462A /* ReturnFromMenuView.swift */,
+				DB616C7E27F1E3F1008B462A /* Setting */,
 			);
 			path = Shared;
 			sourceTree = "<group>";

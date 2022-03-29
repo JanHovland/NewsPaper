@@ -16,10 +16,14 @@ import SwiftUI
 
 struct NewsPaper: View {
     var body: some View {
-        
         if apiKey.count == 32 {
-            Text("Hello, NewsPaper!")
-                .padding()
+            NavigationView {
+                Text("Hello, NewsPaper!")
+                    .padding()
+            }
+            #if os(macOS)
+                .frame(width: 500, height: 300)
+            #endif
         } else {
             NewsPaperApiKey()
         }

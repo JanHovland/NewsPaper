@@ -20,8 +20,13 @@ struct NewsPaperApiKey: View {
                     }
                 }
                 Spacer()
-                Text("Press <Return> for the Home Screen")
+                #if os(iOS)
+                Text("Press <Return to exit")
                     .padding(.bottom, 10)
+                #elseif os(macOS)
+                Text("Press 🔴 to exit")
+                    .padding(.bottom, 10)
+                #endif
             }
             #if os(iOS)
             .navigationBarTitle(Text("Setting"), displayMode: .inline)
@@ -37,6 +42,7 @@ struct NewsPaperApiKey: View {
                                         })
                                     }
             )
+            #elseif os(macOS)
             #endif
         }
     }
