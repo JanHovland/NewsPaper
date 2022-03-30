@@ -42,6 +42,10 @@ func ConnectToInternet() -> (Bool, LocalizedStringKey) {
             device = "iPad"
         }
     }
+#elseif os(macOS)
+    if hasConnectionPath == false {
+        device = "iMac"
+    }
 #endif
     return (hasConnectionPath, device)
 }
