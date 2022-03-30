@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - News
 struct News: Decodable {
-    var status = String()
+    var status =  String()
     var totalResults = Int()
     var articles = [Article]()
 }
@@ -17,12 +17,12 @@ struct News: Decodable {
 // MARK: - Article
 struct Article: Decodable {
     var source = Source()
-    var author = String()
-    var title = String()
+    var author : String?
+    var title  = String()
     var description = String()
     var url = String()
     var urlToImage = String()
-    var publishedAt = Date()
+    var publishedAt = String()
     var content: String?
 }
 

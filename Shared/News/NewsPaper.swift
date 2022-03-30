@@ -39,6 +39,10 @@ struct NewsPaper: View {
                     message = "No Internet connection for this device."
                     isAlertActive.toggle()
                 }
+                
+                await RefreshNews()
+                
+                
             }
             .alert(title, isPresented: $isAlertActive) {
                 Button("OK", action: {})
