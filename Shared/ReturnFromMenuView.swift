@@ -16,7 +16,7 @@ struct ReturnFromMenuView: View {
                 .frame(width: 11, height: 18, alignment: .center)
             Text(text)
         }
-        .foregroundColor(.none)
+        .foregroundColor(.accentColor)
         .font(Font.headline.weight(.regular))
     }
 }

@@ -20,30 +20,29 @@ struct NewsPaperApiKey: View {
                     }
                 }
                 Spacer()
-                #if os(iOS)
+#if os(iOS)
                 Text("Press <Return to exit")
                     .padding(.bottom, 10)
-                #elseif os(macOS)
+#elseif os(macOS)
                 Text("Press 🔴 to exit")
                     .padding(.bottom, 10)
-                #endif
+#endif
             }
-            #if os(iOS)
+#if os(iOS)
             .navigationBarTitle(Text("Setting"), displayMode: .inline)
             .navigationBarItems(leading:
                                     HStack {
-                                        Button(action: {
-                                            ///
-                                            /// exit(1) av slutter appen
-                                            ///
-                                            exit(1)
-                                        }, label: {
-                                            ReturnFromMenuView(text: "Return")
-                                        })
-                                    }
+                Button(action: {
+                    ///
+                    /// exit(1) av slutter appen
+                    ///
+                    exit(1)
+                }, label: {
+                    ReturnFromMenuView(text: String(localized: "Return"))
+                })
+            }
             )
-            #elseif os(macOS)
-            #endif
+#endif
         }
     }
 }

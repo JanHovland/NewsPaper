@@ -23,6 +23,12 @@
 		DB616C8727F1E521008B462A /* ReturnFromMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB616C8527F1E521008B462A /* ReturnFromMenuView.swift */; };
 		DB616C8927F1E7DA008B462A /* GetApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB616C8827F1E7DA008B462A /* GetApiKey.swift */; };
 		DB616C8A27F1E7DA008B462A /* GetApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB616C8827F1E7DA008B462A /* GetApiKey.swift */; };
+		DBC0373927F4395C0036AE2C /* ConnectToInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC0373827F4395C0036AE2C /* ConnectToInternet.swift */; };
+		DBC0373A27F4395C0036AE2C /* ConnectToInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC0373827F4395C0036AE2C /* ConnectToInternet.swift */; };
+		DBC0373D27F43D020036AE2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBC0373B27F43D020036AE2C /* Localizable.strings */; };
+		DBC0373E27F43D020036AE2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBC0373B27F43D020036AE2C /* Localizable.strings */; };
+		DBC0374127F43DD20036AE2C /* NewsPaper (iOS)-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBC0373F27F43DD20036AE2C /* NewsPaper (iOS)-InfoPlist.strings */; };
+		DBC0374427F43DD20036AE2C /* NewsPaper (macOS)-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBC0374227F43DD20036AE2C /* NewsPaper (macOS)-InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +43,10 @@
 		DB616C8227F1E4B5008B462A /* NewsPaperApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPaperApiKey.swift; sourceTree = "<group>"; };
 		DB616C8527F1E521008B462A /* ReturnFromMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnFromMenuView.swift; sourceTree = "<group>"; };
 		DB616C8827F1E7DA008B462A /* GetApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApiKey.swift; sourceTree = "<group>"; };
+		DBC0373827F4395C0036AE2C /* ConnectToInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToInternet.swift; sourceTree = "<group>"; };
+		DBC0373C27F43D020036AE2C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DBC0374027F43DD20036AE2C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = "nb.lproj/NewsPaper (iOS)-InfoPlist.strings"; sourceTree = "<group>"; };
+		DBC0374327F43DD20036AE2C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = "nb.lproj/NewsPaper (macOS)-InfoPlist.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,8 @@
 		DB616C5727F1A934008B462A = {
 			isa = PBXGroup;
 			children = (
+				DBC0374227F43DD20036AE2C /* NewsPaper (macOS)-InfoPlist.strings */,
+				DBC0373F27F43DD20036AE2C /* NewsPaper (iOS)-InfoPlist.strings */,
 				DB616C5C27F1A934008B462A /* Shared */,
 				DB616C6B27F1A936008B462A /* macOS */,
 				DB616C6527F1A936008B462A /* Products */,
@@ -69,7 +81,9 @@
 		DB616C5C27F1A934008B462A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				DBC0373B27F43D020036AE2C /* Localizable.strings */,
 				DB616C5F27F1A936008B462A /* Assets.xcassets */,
+				DBC0373827F4395C0036AE2C /* ConnectToInternet.swift */,
 				DB616C5D27F1A934008B462A /* NewsPaperApp.swift */,
 				DB616C5E27F1A934008B462A /* NewsPaper.swift */,
 				DB616C7B27F1ABB3008B462A /* News.swift */,
@@ -168,6 +182,7 @@
 			knownRegions = (
 				en,
 				Base,
+				nb,
 			);
 			mainGroup = DB616C5727F1A934008B462A;
 			productRefGroup = DB616C6527F1A936008B462A /* Products */;
@@ -186,6 +201,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB616C7127F1A936008B462A /* Assets.xcassets in Resources */,
+				DBC0373E27F43D020036AE2C /* Localizable.strings in Resources */,
+				DBC0374127F43DD20036AE2C /* NewsPaper (iOS)-InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +211,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB616C7227F1A936008B462A /* Assets.xcassets in Resources */,
+				DBC0373D27F43D020036AE2C /* Localizable.strings in Resources */,
+				DBC0374427F43DD20036AE2C /* NewsPaper (macOS)-InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBC0373927F4395C0036AE2C /* ConnectToInternet.swift in Sources */,
 				DB616C8927F1E7DA008B462A /* GetApiKey.swift in Sources */,
 				DB616C7C27F1ABB3008B462A /* News.swift in Sources */,
 				DB616C6F27F1A936008B462A /* NewsPaper.swift in Sources */,
@@ -218,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBC0373A27F4395C0036AE2C /* ConnectToInternet.swift in Sources */,
 				DB616C8A27F1E7DA008B462A /* GetApiKey.swift in Sources */,
 				DB616C7D27F1ABB3008B462A /* News.swift in Sources */,
 				DB616C7027F1A936008B462A /* NewsPaper.swift in Sources */,
@@ -229,6 +250,35 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DBC0373B27F43D020036AE2C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DBC0373C27F43D020036AE2C /* nb */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		DBC0373F27F43DD20036AE2C /* NewsPaper (iOS)-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DBC0374027F43DD20036AE2C /* nb */,
+			);
+			name = "NewsPaper (iOS)-InfoPlist.strings";
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		DBC0374227F43DD20036AE2C /* NewsPaper (macOS)-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DBC0374327F43DD20036AE2C /* nb */,
+			);
+			name = "NewsPaper (macOS)-InfoPlist.strings";
+			path = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DB616C7327F1A936008B462A /* Debug */ = {
