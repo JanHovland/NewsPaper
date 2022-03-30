@@ -21,7 +21,7 @@ struct NewsPaperApiKey: View {
                 }
                 Spacer()
 #if os(iOS)
-                Text("Press <Return to exit")
+                Text("Press <Return or Home Screen Button to exit")
                     .padding(.bottom, 10)
 #elseif os(macOS)
                 Text("Press 🔴 to exit")
