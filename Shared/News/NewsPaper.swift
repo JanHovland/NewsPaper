@@ -21,11 +21,19 @@ struct NewsPaper: View {
     @State private var title: LocalizedStringKey = ""
     @State private var isAlertActive = false
     
+    @State private var newsRecords = [NewsRecord]()
+    
     var body: some View {
         if apiKey.count == 32 {
             NavigationView {
-                Text("Hello, NewsPaper!")
-                    .padding()
+                List {
+                    ForEach(newsRecords) { newsRecord in
+                        Text(newsRecord.article_title)
+                        Text(newsRecord.article_description)
+                            .font(Font.footnote.weight(.light))
+                            .foregroundColor(.green)
+                    }
+                }
             }
 #if os(macOS)
             .frame(width: 500, height: 300)
@@ -39,10 +47,7 @@ struct NewsPaper: View {
                     message = "No Internet connection for this device."
                     isAlertActive.toggle()
                 }
-                
-                await RefreshNews()
-                
-                
+                newsRecords = await RefreshNews()
             }
             .alert(title, isPresented: $isAlertActive) {
                 Button("OK", action: {})
@@ -52,6 +57,20 @@ struct NewsPaper: View {
         } else {
             NewsPaperApiKey()
         }
+    }
+    
+    func RefreshNews() async -> [NewsRecord] {
+        var newsRecords : [NewsRecord]
+        
+        var value : (LocalizedStringKey, News)
+        await value = ServiceNews().getNews()
+        
+        let count = value.1.articles.count
+        var value1 : [NewsRecord]
+        
+        value1 = SetNewsRecords(value: value.1, count: count)
+        newsRecords = value1
+        return newsRecords
     }
     
 }

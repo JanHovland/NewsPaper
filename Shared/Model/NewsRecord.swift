@@ -9,9 +9,9 @@ import Foundation
 
 struct NewsRecord: Identifiable {
     var id = UUID()
-    var status =  String()
-    var totalResults = Int()
-    var article_source_id : String?
+//    var status =  String()
+//    var totalResults = Int()
+//    var article_source_id = String()
     var article_source_name = String()
     var article_author : String?
     var article_title  = String()
@@ -19,5 +19,5 @@ struct NewsRecord: Identifiable {
     var article_url = String()
     var article_urlToImage = String()
     var article_publishedAt = String()
-    var article_content: String?
+    var article_content = String()
 }
