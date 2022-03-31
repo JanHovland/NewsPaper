@@ -34,6 +34,28 @@ struct NewsPaper: View {
                             .foregroundColor(.green)
                     }
                 }
+                .refreshable {
+                    newsRecords = await RefreshNews()
+                }
+                .listStyle(InsetListStyle())
+                .navigationBarTitle(Text("Top News"))
+                .toolbar(content: {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        ControlGroup {
+                            Button {
+                                /// Rutine for å friske opp personoversikten
+                                Task.init {
+                                    
+                                    newsRecords = await RefreshNews()
+                                }
+                            } label: {
+                                Text("Refresh")
+                                    .font(Font.headline.weight(.light))
+                            }
+                        }
+                        .controlGroupStyle(.navigation)
+                    }
+                })
             }
 #if os(macOS)
             .frame(width: 500, height: 300)
@@ -60,7 +82,7 @@ struct NewsPaper: View {
     }
     
     func RefreshNews() async -> [NewsRecord] {
-        var newsRecords : [NewsRecord]
+        var newsRecords = [NewsRecord]()
         
         var value : (LocalizedStringKey, News)
         await value = ServiceNews().getNews()

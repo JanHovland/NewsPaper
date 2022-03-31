@@ -12,10 +12,7 @@ func SetNewsRecords(value: News, count: Int) -> [NewsRecord] {
     
     for i in 0..<count {
 
-        let newsRec = NewsRecord(// status:                    value.status,
-                                 // totalResults:              value.totalResults,
-                                 // article_source_id:         value.articles[i].source.id ?? "",
-                                 article_source_name:       value.articles[i].source.name,
+        let newsRec = NewsRecord(article_source_name:       value.articles[i].source.name,
                                  article_author:            value.articles[i].author ?? "",
                                  article_title:             value.articles[i].title,
                                  article_description:       value.articles[i].description,

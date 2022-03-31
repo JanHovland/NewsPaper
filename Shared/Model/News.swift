@@ -9,8 +9,6 @@ import Foundation
 
 // MARK: - News
 struct News: Decodable {
-//    var status =  String()
-//    var totalResults = Int()
     var articles = [Article]()
 }
 
@@ -28,6 +26,5 @@ struct Article: Decodable {
 
 // MARK: - Source
 struct Source: Decodable {
-//    var id : String?
     var name = String()
 }
