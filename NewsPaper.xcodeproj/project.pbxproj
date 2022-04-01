@@ -35,6 +35,10 @@
 		DBC0373E27F43D020036AE2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBC0373B27F43D020036AE2C /* Localizable.strings */; };
 		DBC0374127F43DD20036AE2C /* NewsPaper (iOS)-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBC0373F27F43DD20036AE2C /* NewsPaper (iOS)-InfoPlist.strings */; };
 		DBC0374427F43DD20036AE2C /* NewsPaper (macOS)-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBC0374227F43DD20036AE2C /* NewsPaper (macOS)-InfoPlist.strings */; };
+		DBDC685E27F619B600210437 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDC685D27F619B600210437 /* SafariView.swift */; };
+		DBDC685F27F619B600210437 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDC685D27F619B600210437 /* SafariView.swift */; };
+		DBDC686127F61DFA00210437 /* NewsPaperRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDC686027F61DFA00210437 /* NewsPaperRowView.swift */; };
+		DBDC686227F61DFA00210437 /* NewsPaperRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDC686027F61DFA00210437 /* NewsPaperRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +60,8 @@
 		DBC0373C27F43D020036AE2C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DBC0374027F43DD20036AE2C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = "nb.lproj/NewsPaper (iOS)-InfoPlist.strings"; sourceTree = "<group>"; };
 		DBC0374327F43DD20036AE2C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = "nb.lproj/NewsPaper (macOS)-InfoPlist.strings"; sourceTree = "<group>"; };
+		DBDC685D27F619B600210437 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		DBDC686027F61DFA00210437 /* NewsPaperRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPaperRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,7 @@
 				DBC0373827F4395C0036AE2C /* ConnectToInternet.swift */,
 				DB616C8527F1E521008B462A /* ReturnFromMenuView.swift */,
 				DB1EF91827F4BEAD00593D72 /* SetNewsRecords.swift */,
+				DBDC685D27F619B600210437 /* SafariView.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -100,6 +107,7 @@
 			children = (
 				DB616C5E27F1A934008B462A /* NewsPaper.swift */,
 				DB616C5D27F1A934008B462A /* NewsPaperApp.swift */,
+				DBDC686027F61DFA00210437 /* NewsPaperRowView.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -268,9 +276,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBC0373927F4395C0036AE2C /* ConnectToInternet.swift in Sources */,
+				DBDC686127F61DFA00210437 /* NewsPaperRowView.swift in Sources */,
 				DB616C8927F1E7DA008B462A /* GetApiKey.swift in Sources */,
 				DB1EF91927F4BEAD00593D72 /* SetNewsRecords.swift in Sources */,
 				DB1EF91C27F4CD8600593D72 /* NewsRecord.swift in Sources */,
+				DBDC685E27F619B600210437 /* SafariView.swift in Sources */,
 				DB616C7C27F1ABB3008B462A /* News.swift in Sources */,
 				DB616C6F27F1A936008B462A /* NewsPaper.swift in Sources */,
 				DB616C8027F1E436008B462A /* Setting.swift in Sources */,
@@ -286,9 +296,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBC0373A27F4395C0036AE2C /* ConnectToInternet.swift in Sources */,
+				DBDC686227F61DFA00210437 /* NewsPaperRowView.swift in Sources */,
 				DB616C8A27F1E7DA008B462A /* GetApiKey.swift in Sources */,
 				DB1EF91A27F4BEAD00593D72 /* SetNewsRecords.swift in Sources */,
 				DB1EF91D27F4CD8600593D72 /* NewsRecord.swift in Sources */,
+				DBDC685F27F619B600210437 /* SafariView.swift in Sources */,
 				DB616C7D27F1ABB3008B462A /* News.swift in Sources */,
 				DB616C7027F1A936008B462A /* NewsPaper.swift in Sources */,
 				DB616C8127F1E436008B462A /* Setting.swift in Sources */,

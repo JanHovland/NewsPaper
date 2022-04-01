@@ -28,24 +28,24 @@ struct NewsPaper: View {
             NavigationView {
                 List {
                     ForEach(newsRecords) { newsRecord in
-                        Text(newsRecord.article_title)
-                        Text(newsRecord.article_description)
-                            .font(Font.footnote.weight(.light))
-                            .foregroundColor(.green)
+                        let url = URL(string: newsRecord.article_url)
+                        let url1 = URL(string: newsRecord.article_urlToImage)
+                        NavigationLink(destination: SafariView(url: url!)) {
+                            NewsPaperRowView(newsRecord: newsRecord, url: url1!)
+                        }
                     }
                 }
                 .refreshable {
                     newsRecords = await RefreshNews()
                 }
-                .listStyle(InsetListStyle())
                 .navigationBarTitle(Text("Top News"))
+                .listStyle(SidebarListStyle())
                 .toolbar(content: {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         ControlGroup {
                             Button {
                                 /// Rutine for å friske opp personoversikten
                                 Task.init {
-                                    
                                     newsRecords = await RefreshNews()
                                 }
                             } label: {
