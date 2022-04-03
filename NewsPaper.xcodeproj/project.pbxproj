@@ -56,6 +56,7 @@
 		DB616C8227F1E4B5008B462A /* NewsPaperApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPaperApiKey.swift; sourceTree = "<group>"; };
 		DB616C8527F1E521008B462A /* ReturnFromMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnFromMenuView.swift; sourceTree = "<group>"; };
 		DB616C8827F1E7DA008B462A /* GetApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApiKey.swift; sourceTree = "<group>"; };
+		DBB2A72C27F7889A005F41D4 /* NewsPaper (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NewsPaper (iOS).entitlements"; sourceTree = "<group>"; };
 		DBC0373827F4395C0036AE2C /* ConnectToInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToInternet.swift; sourceTree = "<group>"; };
 		DBC0373C27F43D020036AE2C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DBC0374027F43DD20036AE2C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = "nb.lproj/NewsPaper (iOS)-InfoPlist.strings"; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 		DB616C5727F1A934008B462A = {
 			isa = PBXGroup;
 			children = (
+				DBB2A72C27F7889A005F41D4 /* NewsPaper (iOS).entitlements */,
 				DBC0374227F43DD20036AE2C /* NewsPaper (macOS)-InfoPlist.strings */,
 				DBC0373F27F43DD20036AE2C /* NewsPaper (iOS)-InfoPlist.strings */,
 				DB616C5C27F1A934008B462A /* Shared */,
@@ -457,6 +459,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NewsPaper (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6UR9TA6744;
@@ -476,6 +479,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.janhovland.NewsPaper;
 				PRODUCT_NAME = NewsPaper;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -487,6 +491,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NewsPaper (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6UR9TA6744;
@@ -506,6 +511,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.janhovland.NewsPaper;
 				PRODUCT_NAME = NewsPaper;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -26,6 +26,7 @@ struct NewsPaper: View {
     var body: some View {
         if apiKey.count == 32 {
             NavigationView {
+#if os(iOS)
                 List {
                     ForEach(newsRecords) { newsRecord in
                         let url = URL(string: newsRecord.article_url)
@@ -56,9 +57,24 @@ struct NewsPaper: View {
                         .controlGroupStyle(.navigation)
                     }
                 })
-            }
+#endif
+                
 #if os(macOS)
-            .frame(width: 500, height: 300)
+                List {
+                    ForEach(newsRecords) { newsRecord in
+                        let url1 = URL(string: newsRecord.article_urlToImage)
+                        NavigationLink(destination: SafariView(url: newsRecord.article_url)) {
+                            NewsPaperRowView(newsRecord: newsRecord, url: url1!)
+                        }
+                    }
+                }
+                .listStyle(InsetListStyle())
+#endif
+                
+            } // NavigationView
+            
+#if os(macOS)
+            .frame(width: 700, height: 400)
 #endif
             .task {
                 /// Sjekker om internet er tilkoplet

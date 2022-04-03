@@ -11,6 +11,9 @@ func SetNewsRecords(value: News, count: Int) -> [NewsRecord] {
     var newsRecords = [NewsRecord]()
     
     for i in 0..<count {
+        
+        let str = value.articles[i].content ?? ""
+        let strArray = str.components(separatedBy: "[")
 
         let newsRec = NewsRecord(article_source_name:       value.articles[i].source.name,
                                  article_author:            value.articles[i].author ?? "",
@@ -19,7 +22,7 @@ func SetNewsRecords(value: News, count: Int) -> [NewsRecord] {
                                  article_url:               value.articles[i].url,
                                  article_urlToImage:        value.articles[i].urlToImage,
                                  article_publishedAt:       value.articles[i].publishedAt,
-                                 article_content:           value.articles[i].content ?? "")
+                                 article_content:           strArray[0])
         
         newsRecords.append(newsRec)
     }

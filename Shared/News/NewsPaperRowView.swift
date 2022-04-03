@@ -40,9 +40,16 @@ struct NewsPaperRowView: View {
                     }
                 }
             }
+#if os(iOS)
             .frame(minHeight: 200, maxHeight: 300)
             .background(Color.gray.opacity(0.3))
             .clipped()
+#elseif os(macOS)
+            .frame(width: 400, height: 100)
+            .background(Color.gray.opacity(0.3))
+            .clipped()
+            
+#endif
             
             VStack(alignment: .leading, spacing: 8) {
                 Text(newsRecord.article_title)
