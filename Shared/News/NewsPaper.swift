@@ -20,24 +20,7 @@ struct NewsPaper: View {
     @State private var message: LocalizedStringKey = ""
     @State private var title: LocalizedStringKey = ""
     @State private var isAlertActive = false
-    
     @State private var newsRecords = [NewsRecord]()
-    
-    enum Category: String, CaseIterable, Identifiable {
-        case general
-        case business
-        case technology
-        case entertainment
-        case sports
-        case science
-        case health
-        
-        var id: String { self.rawValue }
-        
-    }
-    
-    @State var selection: Category = .general
-    
     @ObservedObject var menuSelect = MenuSelect()
     
     fileprivate func funcMenu(_ menu: String, _ menuText: String, _ image: String) -> Button<Label<Text, Image>> {
@@ -90,23 +73,18 @@ struct NewsPaper: View {
                     }
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
-//                        Picker(selection: $selection,
-//                               label: Image(systemName: "fiberchannel"),
-//                               content: {
-//                            ForEach(Category.allCases) { category in
-//                                Text(category.rawValue.capitalized).tag(category)
-//                            }
-//                        })
-//                        .padding()
-//                        .pickerStyle(MenuPickerStyle())
                         Image(systemName: "ellipsis.circle" )
                            .foregroundColor(.accentColor)
                            .font(Font.body.weight(.regular))
                            .contextMenu {
-                               funcMenu("general", "Top Headlines", "square.and.pencil")
-                               funcMenu("sport", "Sport", "square.and.pencil")
+                               funcMenu("general", "Siste nytt", "square.and.pencil")
+                               funcMenu("business", "Forretning", "square.and.pencil")
+                               funcMenu("technology", "Teknologi", "square.and.pencil")
+                               funcMenu("entertainment", "Underholdning", "square.and.pencil")
+                               funcMenu("sports", "Sport", "square.and.pencil")
+                               funcMenu("science", "Vitenskap", "square.and.pencil")
+                               funcMenu("health", "Helse", "square.and.pencil")
                            }
-                        
                     }})
 #endif
                 
@@ -142,7 +120,7 @@ struct NewsPaper: View {
                 }
                 
                 menuSelect.menu = "general"
-                menuSelect.menuText = "Top Headlines"
+                menuSelect.menuText = "Siste nytt"
                 
                 
                 newsRecords = await RefreshNews()
