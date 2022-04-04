@@ -23,6 +23,35 @@ struct NewsPaper: View {
     
     @State private var newsRecords = [NewsRecord]()
     
+    enum Category: String, CaseIterable, Identifiable {
+        case general
+        case business
+        case technology
+        case entertainment
+        case sports
+        case science
+        case health
+        
+        var id: String { self.rawValue }
+        
+    }
+    
+    @State var selection: Category = .general
+    
+    @ObservedObject var menuSelect = MenuSelect()
+    
+    fileprivate func funcMenu(_ menu: String, _ menuText: String, _ image: String) -> Button<Label<Text, Image>> {
+        return Button {
+            Task.init {
+                menuSelect.menu = menu
+                menuSelect.menuText = menuText
+                newsRecords = await RefreshNews()
+            }
+        } label: {
+            Label(menuText, systemImage: image)
+        }
+    }
+    
     var body: some View {
         if apiKey.count == 32 {
             NavigationView {
@@ -31,18 +60,21 @@ struct NewsPaper: View {
                     ForEach(newsRecords) { newsRecord in
                         let url = URL(string: newsRecord.article_url)
                         let url1 = URL(string: newsRecord.article_urlToImage)
-                        NavigationLink(destination: SafariView(url: url!)) {
-                            NewsPaperRowView(newsRecord: newsRecord, url: url1!)
+                        if url != nil,
+                        url1 != nil {
+                            NavigationLink(destination: SafariView(url: url!)) {
+                                NewsPaperRowView(newsRecord: newsRecord, url: url1!)
+                            }
                         }
                     }
                 }
                 .refreshable {
                     newsRecords = await RefreshNews()
                 }
-                .navigationBarTitle(Text("Top News"))
+                .navigationBarTitle(Text(menuSelect.menuText))
                 .listStyle(SidebarListStyle())
                 .toolbar(content: {
-                    ToolbarItem(placement: .navigationBarTrailing) {
+                    ToolbarItem(placement: .navigationBarLeading) {
                         ControlGroup {
                             Button {
                                 /// Rutine for å friske opp personoversikten
@@ -56,15 +88,38 @@ struct NewsPaper: View {
                         }
                         .controlGroupStyle(.navigation)
                     }
-                })
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+//                        Picker(selection: $selection,
+//                               label: Image(systemName: "fiberchannel"),
+//                               content: {
+//                            ForEach(Category.allCases) { category in
+//                                Text(category.rawValue.capitalized).tag(category)
+//                            }
+//                        })
+//                        .padding()
+//                        .pickerStyle(MenuPickerStyle())
+                        Image(systemName: "ellipsis.circle" )
+                           .foregroundColor(.accentColor)
+                           .font(Font.body.weight(.regular))
+                           .contextMenu {
+                               funcMenu("general", "Top Headlines", "square.and.pencil")
+                               funcMenu("sport", "Sport", "square.and.pencil")
+                           }
+                        
+                    }})
 #endif
                 
 #if os(macOS)
                 List {
                     ForEach(newsRecords) { newsRecord in
+                        let url = URL(string: newsRecord.article_url)
                         let url1 = URL(string: newsRecord.article_urlToImage)
-                        NavigationLink(destination: SafariView(url: newsRecord.article_url)) {
-                            NewsPaperRowView(newsRecord: newsRecord, url: url1!)
+                        if url != nil,
+                           url1 != nil {
+                            NavigationLink(destination: SafariView(url: newsRecord.article_url)) {
+                                NewsPaperRowView(newsRecord: newsRecord, url: url1!)
+                            }
                         }
                     }
                 }
@@ -85,6 +140,11 @@ struct NewsPaper: View {
                     message = "No Internet connection for this device."
                     isAlertActive.toggle()
                 }
+                
+                menuSelect.menu = "general"
+                menuSelect.menuText = "Top Headlines"
+                
+                
                 newsRecords = await RefreshNews()
             }
             .alert(title, isPresented: $isAlertActive) {

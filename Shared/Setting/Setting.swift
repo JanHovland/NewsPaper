@@ -24,3 +24,22 @@ class Setting: ObservableObject {
         self.apiKey = UserDefaults.standard.object(forKey: "API_KEY") as? String ?? ""
     }
 }
+
+class MenuSelect: ObservableObject {
+    @Published var menu: String {
+        didSet {
+            UserDefaults.standard.set(menu, forKey: "MENUSELECT")
+        }
+    }
+    
+    @Published var menuText: String {
+        didSet {
+            UserDefaults.standard.set(menuText, forKey: "MENUTEXT")
+        }
+    }
+    
+    init() {
+        self.menu = UserDefaults.standard.object(forKey: "MENUSELECT") as? String ?? ""
+        self.menuText = UserDefaults.standard.object(forKey: "MENUTEXT") as? String ?? ""
+    }
+}

@@ -10,15 +10,22 @@ import SwiftUI
 
 class ServiceNews: ObservableObject {
     @Published var news = News()
+    
     func getNews() async -> (LocalizedStringKey, News) {
-        var err: LocalizedStringKey = ""
         
-        let url = URL(string: "https://newsapi.org/v2/top-headlines?country=no&apiKey=" + apiKey)!
-        print(url)
+        @ObservedObject var menuSelect = MenuSelect()
+        var err: LocalizedStringKey = ""
+        var url = "https://newsapi.org/v2/top-headlines?"
+        url += "apiKey=\(apiKey)"
+        url += "&language=no"
+        url += "&category=\(menuSelect.menu)"
+        
+        print(url as Any)
         
         let urlSession = URLSession.shared
+        
         do {
-            let (data, _) = try await urlSession.data(from: url)
+            let (data, _) = try await urlSession.data(from: URL(string: url)!)
             news = try JSONDecoder().decode(News.self, from: data)
         }
         catch {
