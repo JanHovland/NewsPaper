@@ -49,7 +49,9 @@ struct NewsPaper: View {
                             }
                         }
                         .onChange(of: selection) { _ in
+                            
                             newsType = selection.rawValue
+                            
                             Task.init {
                                 newsRecords = await RefreshNews()
                             }
@@ -89,7 +91,7 @@ struct NewsPaper: View {
                     .refreshable {
                         newsRecords = await RefreshNews()
                     }
-                    .navigationBarTitle(Text(GetHeadline(option: newsType)))
+                    .navigationBarTitle(Text(GetHeadline(option: newsType)), displayMode: .automatic)
                     .listStyle(SidebarListStyle())
 #endif
                 } // VStack
@@ -132,29 +134,45 @@ struct NewsPaper: View {
     
 }
 
-func GetHeadline(option: String) -> String {
-    var newsTypeHeadline = ""
+func GetHeadlineX(option: String) -> LocalizedStringKey {
+    var newsTypeHeadline: LocalizedStringKey = ""
     
     if option == "general" {
-        newsTypeHeadline = "Top headline"
+        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Top headlines", comment: ""))
+    } else if option == "business" {
+        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Business", comment: ""))
+    } else if option == "technology" {
+        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Technology", comment: ""))
+    } else if option == "entertainment" {
+        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Entertainment", comment: ""))
+    } else if option == "sport" {
+        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Sport", comment: ""))
+    } else if option == "science" {
+        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Science", comment: ""))
+    } else if option == "health" {
+        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Health", comment: ""))
     }
-    if option == "business" {
-        newsTypeHeadline = "Business"
-    }
-    if option == "technology" {
-        newsTypeHeadline = "Technology"
-    }
-    if option == "entertainment" {
-        newsTypeHeadline = "entertainment"
-    }
-    if option == "sport" {
-        newsTypeHeadline = "Sport"
-    }
-    if option == "science" {
-        newsTypeHeadline = "Science"
-    }
-    if option == "health" {
-        newsTypeHeadline = "Health"
+
+    return newsTypeHeadline
+}
+
+func GetHeadline(option: String) -> String {
+    var newsTypeHeadline: String = ""
+    
+    if option == "general" {
+        newsTypeHeadline = String(localized: "Top headlines")
+    } else if option == "business" {
+        newsTypeHeadline = String(localized: "Business")
+    } else if option == "technology" {
+        newsTypeHeadline = String(localized: "Technology")
+    } else if option == "entertainment" {
+        newsTypeHeadline = String(localized: "Entertainment")
+    } else if option == "sport" {
+        newsTypeHeadline = String(localized: "Sport")
+    } else if option == "science" {
+        newsTypeHeadline = String(localized: "Science")
+    } else if option == "health" {
+        newsTypeHeadline = String(localized: "Health")
     }
 
     return newsTypeHeadline
