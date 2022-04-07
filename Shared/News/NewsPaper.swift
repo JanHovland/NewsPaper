@@ -15,49 +15,65 @@ var apiKey = getApiKey()
 import SwiftUI
 import Network
 
-/*
- Picker("Select", selection: $name) {
- ForEach(names, id:\.self) { name in
- Text(name)
- }
- }
- .onReceive([self.name].publisher.first()) { value in
- self.doSomethingWith(value: value)
- }
- 
- // Just an example function below
- func doSomethingWith(value: String) {
- print(value)
- }
- */
-
 struct NewsPaper: View {
     
     @State private var message: LocalizedStringKey = ""
     @State private var title: LocalizedStringKey = ""
     @State private var isAlertActive = false
     @State private var newsRecords = [NewsRecord]()
-    @ObservedObject var menuSelect = MenuSelect()
-
-#if os(iOS)
-    fileprivate func funcMenu(_ menu: String, _ menuText: String, _ image: String) -> Button<Label<Text, Image>> {
-        return Button {
-            Task.init {
-                menuSelect.menu = menu
-                menuSelect.menuText = menuText
-                newsRecords = await RefreshNews()
-            }
-        } label: {
-            Label(menuText, systemImage: image)
-        }
-    }
-    #endif
     
+    enum Option: String, CaseIterable, Identifiable {
+        case general
+        case business
+        case technology
+        case entertainment
+        case sport
+        case science
+        case health
+        var id: String { self.rawValue }
+    }
+    
+    @State var selection: Option = .general
+    @State private var newsType = "general"
+    @State private var newsTypeHeadline = ""
+
     var body: some View {
         if apiKey.count == 32 {
             NavigationView {
-                    
-#if os(iOS)
+                VStack {
+                    HStack {
+                        Spacer()
+                        Picker("Velg", selection: $selection) {
+                            ForEach(Option.allCases, id:\.self) { option in
+                                Text(option.rawValue)
+                            }
+                        }
+                        .onChange(of: selection) { _ in
+                            newsType = selection.rawValue
+                            Task.init {
+                                newsRecords = await RefreshNews()
+                            }
+                        }
+                    }
+                    .padding(.top, 5)
+                    .padding(.leading, 20)
+                    .padding(.trailing, 20)
+                    Spacer()
+#if os(macOS)
+                    List {
+                        ForEach(newsRecords) { newsRecord in
+                            let url = URL(string: newsRecord.article_url)
+                            let url1 = URL(string: newsRecord.article_urlToImage)
+                            if url != nil,
+                               url1 != nil {
+                                NavigationLink(destination: SafariView(url: newsRecord.article_url)) {
+                                    NewsPaperRowView(newsRecord: newsRecord, url: url1!)
+                                }
+                            }
+                        }
+                    }
+                    .listStyle(InsetListStyle())
+#elseif os(iOS)
                     List {
                         ForEach(newsRecords) { newsRecord in
                             let url = URL(string: newsRecord.article_url)
@@ -73,82 +89,11 @@ struct NewsPaper: View {
                     .refreshable {
                         newsRecords = await RefreshNews()
                     }
-                    .navigationBarTitle(Text(menuSelect.menuText))
+                    .navigationBarTitle(Text(GetHeadline(option: newsType)))
                     .listStyle(SidebarListStyle())
-                    .toolbar(content: {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            ControlGroup {
-                                Button {
-                                    /// Rutine for å friske opp personoversikten
-                                    Task.init {
-                                        newsRecords = await RefreshNews()
-                                    }
-                                } label: {
-                                    Text("Refresh")
-                                        .font(Font.headline.weight(.light))
-                                }
-                            }
-                            .controlGroupStyle(.navigation)
-                        }
-                        
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Image(systemName: "ellipsis.circle" )
-                                .foregroundColor(.accentColor)
-                                .font(Font.body.weight(.regular))
-                                .contextMenu {
-                                    funcMenu("general", "Siste nytt", "square.and.pencil")
-                                    funcMenu("business", "Forretning", "square.and.pencil")
-                                    funcMenu("technology", "Teknologi", "square.and.pencil")
-                                    funcMenu("entertainment", "Underholdning", "square.and.pencil")
-                                    funcMenu("sports", "Sport", "square.and.pencil")
-                                    funcMenu("science", "Vitenskap", "square.and.pencil")
-                                    funcMenu("health", "Helse", "square.and.pencil")
-                                }
-                        }})
 #endif
-                    
-#if os(macOS)
-
-//                VStack {
-//                    Text("_Choose_") /// Italics med _
-//                        .foregroundColor(.accentColor)
-//                        .contextMenu {
-//                            Button {
-//                                Task.init {
-//                                    // await findAllArticles()
-//                                }
-//                            } label: {
-//                                Label("Refresh", systemImage: "square.and.pencil")
-//                            }
-//                            Button {
-//                                menuSelect.menu = "sport"
-//                                newsRecords = await RefreshNews()
-//                            } label: {
-//                                Label("Sport", systemImage: "square.and.pencil")
-//                            }
-//                        }
-                
-                    List {
-                        ForEach(newsRecords) { newsRecord in
-                            let url = URL(string: newsRecord.article_url)
-                            let url1 = URL(string: newsRecord.article_urlToImage)
-                            if url != nil,
-                               url1 != nil {
-                                NavigationLink(destination: SafariView(url: newsRecord.article_url)) {
-                                    NewsPaperRowView(newsRecord: newsRecord, url: url1!)
-                                }
-                            }
-                        }
-                    }
-                    .listStyle(InsetListStyle())
-//                }
-#endif
-                 
+                } // VStack
             } // NavigationView
-            
-#if os(macOS)
-            .frame(minWidth: 700, idealWidth: .infinity, minHeight: 400, maxHeight: .infinity)
-#endif
             .task {
                 /// Sjekker om internet er tilkoplet
                 var value : (Bool, LocalizedStringKey)
@@ -159,10 +104,6 @@ struct NewsPaper: View {
                     isAlertActive.toggle()
                 }
                 
-                menuSelect.menu = "general"
-                menuSelect.menuText = "Siste nytt"
-                
-                
                 newsRecords = await RefreshNews()
             }
             .alert(title, isPresented: $isAlertActive) {
@@ -172,14 +113,14 @@ struct NewsPaper: View {
             }
         } else {
             NewsPaperApiKey()
-        }
-    }
+        } // if
+    } // Body
     
     func RefreshNews() async -> [NewsRecord] {
         var newsRecords = [NewsRecord]()
         
         var value : (LocalizedStringKey, News)
-        await value = ServiceNews().getNews()
+        await value = ServiceNews().getNews(type: newsType)
         
         let count = value.1.articles.count
         var value1 : [NewsRecord]
@@ -191,5 +132,30 @@ struct NewsPaper: View {
     
 }
 
+func GetHeadline(option: String) -> String {
+    var newsTypeHeadline = ""
+    
+    if option == "general" {
+        newsTypeHeadline = "Top headline"
+    }
+    if option == "business" {
+        newsTypeHeadline = "Business"
+    }
+    if option == "technology" {
+        newsTypeHeadline = "Technology"
+    }
+    if option == "entertainment" {
+        newsTypeHeadline = "entertainment"
+    }
+    if option == "sport" {
+        newsTypeHeadline = "Sport"
+    }
+    if option == "science" {
+        newsTypeHeadline = "Science"
+    }
+    if option == "health" {
+        newsTypeHeadline = "Health"
+    }
 
-
+    return newsTypeHeadline
+}

@@ -11,14 +11,13 @@ import SwiftUI
 class ServiceNews: ObservableObject {
     @Published var news = News()
     
-    func getNews() async -> (LocalizedStringKey, News) {
+    func getNews(type : String) async -> (LocalizedStringKey, News) {
         
-        @ObservedObject var menuSelect = MenuSelect()
         var err: LocalizedStringKey = ""
         var url = "https://newsapi.org/v2/top-headlines?"
         url += "apiKey=\(apiKey)"
         url += "&language=no"
-        url += "&category=\(menuSelect.menu)"
+        url += "&category=\(type)"
         
         print(url as Any)
         
