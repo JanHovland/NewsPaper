@@ -25,10 +25,17 @@ struct NewsPaperRowView: View {
                             Spacer()
                         }
                     case .success(let image):
+                        #if os(iOS)
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(maxWidth: 400, maxHeight: 200)
+                        #elseif os(macOS)
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(maxWidth: 400, maxHeight: 100)
+                        #endif
                     case .failure:
                         HStack {
                             Spacer()
@@ -42,7 +49,6 @@ struct NewsPaperRowView: View {
                 }
             }
 #if os(macOS)
-            .frame(width: 400, height: 100)
             .background(Color.gray.opacity(0.3))
             .clipped()
 #endif
