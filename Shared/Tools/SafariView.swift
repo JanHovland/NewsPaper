@@ -11,13 +11,16 @@ import WebKit
 
 #if os(iOS)
 struct SafariView: UIViewControllerRepresentable {
+    
     let url: URL
+
     func makeUIViewController(context: UIViewControllerRepresentableContext<Self>) -> SFSafariViewController {
         return SFSafariViewController(url: url)
     }
     func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariView>) {
 
     }
+    
 }
 #elseif os(macOS)
 /// Grunnen til at denne "ikke virket" var følgende:

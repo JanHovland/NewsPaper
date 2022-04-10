@@ -93,6 +93,7 @@ struct NewsPaper: View {
                                 NavigationLink(destination: SafariView(url: url!)) {
                                     NewsPaperRowView(newsRecord: newsRecord, url: url1!)
                                 }
+                                
                             }
                         }
                     }
@@ -113,7 +114,6 @@ struct NewsPaper: View {
                     message = "No Internet connection for this device."
                     isAlertActive.toggle()
                 }
-                
                 newsRecords = await RefreshNews()
             }
             .alert(title, isPresented: $isAlertActive) {
@@ -161,7 +161,5 @@ func GetHeadline(option: String) -> String {
         newsTypeHeadline = String(localized: "health")
     }
 
-    print("newsTypeHeadline = \(newsTypeHeadline)")
-    
     return newsTypeHeadline
 }
