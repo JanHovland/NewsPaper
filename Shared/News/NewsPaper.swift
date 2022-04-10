@@ -23,35 +23,43 @@ struct NewsPaper: View {
     @State private var newsRecords = [NewsRecord]()
     
     enum Option: String, CaseIterable, Identifiable {
-        case general
-        case business
-        case technology
-        case entertainment
-        case sport
-        case science
-        case health
+        case general        = "general"
+        case business       = "business"
+        case technology     = "technology"
+        case entertainment  = "entertainment"
+        case sport          = "sport"
+        case science        = "science"
+        case health         = "health"
+        
         var id: String { self.rawValue }
+        
+        func localizedString() -> String {
+            return NSLocalizedString(self.rawValue, comment: "")
+        }
+
+        static func getTitleFor(title:Option) -> String {
+            return title.localizedString()
+        }
+        
     }
     
     @State var selection: Option = .general
     @State private var newsType = "general"
     @State private var newsTypeHeadline = ""
-
+ 
     var body: some View {
         if apiKey.count == 32 {
             NavigationView {
                 VStack {
                     HStack {
                         Spacer()
-                        Picker("Velg", selection: $selection) {
+                        Picker("Select: ", selection: $selection) {
                             ForEach(Option.allCases, id:\.self) { option in
-                                Text(option.rawValue)
+                                Text(NewsPaper.Option.getTitleFor(title: option))
                             }
                         }
                         .onChange(of: selection) { _ in
-                            
                             newsType = selection.rawValue
-                            
                             Task.init {
                                 newsRecords = await RefreshNews()
                             }
@@ -134,46 +142,26 @@ struct NewsPaper: View {
     
 }
 
-func GetHeadlineX(option: String) -> LocalizedStringKey {
-    var newsTypeHeadline: LocalizedStringKey = ""
-    
-    if option == "general" {
-        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Top headlines", comment: ""))
-    } else if option == "business" {
-        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Business", comment: ""))
-    } else if option == "technology" {
-        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Technology", comment: ""))
-    } else if option == "entertainment" {
-        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Entertainment", comment: ""))
-    } else if option == "sport" {
-        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Sport", comment: ""))
-    } else if option == "science" {
-        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Science", comment: ""))
-    } else if option == "health" {
-        newsTypeHeadline = LocalizedStringKey(NSLocalizedString("Health", comment: ""))
-    }
-
-    return newsTypeHeadline
-}
-
 func GetHeadline(option: String) -> String {
     var newsTypeHeadline: String = ""
     
     if option == "general" {
-        newsTypeHeadline = String(localized: "Top headlines")
+        newsTypeHeadline = String(localized: "general")
     } else if option == "business" {
-        newsTypeHeadline = String(localized: "Business")
+        newsTypeHeadline = String(localized: "business")
     } else if option == "technology" {
-        newsTypeHeadline = String(localized: "Technology")
+        newsTypeHeadline = String(localized: "technology")
     } else if option == "entertainment" {
-        newsTypeHeadline = String(localized: "Entertainment")
+        newsTypeHeadline = String(localized: "entertainment")
     } else if option == "sport" {
-        newsTypeHeadline = String(localized: "Sport")
+        newsTypeHeadline = String(localized: "sport")
     } else if option == "science" {
-        newsTypeHeadline = String(localized: "Science")
+        newsTypeHeadline = String(localized: "science")
     } else if option == "health" {
-        newsTypeHeadline = String(localized: "Health")
+        newsTypeHeadline = String(localized: "health")
     }
 
+    print("newsTypeHeadline = \(newsTypeHeadline)")
+    
     return newsTypeHeadline
 }

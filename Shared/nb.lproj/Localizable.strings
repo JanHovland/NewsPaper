@@ -2,16 +2,19 @@
 "API KEY NEWSPAPER" = "API KEY NYHETER";
 
 /* No comment provided by engineer. */
-"Business" = "Virksomhet";
+"business" = "Virksomhet";
 
 /* No comment provided by engineer. */
 "Enter a valid Api key to access the NewsPaper" = "Legg inn en lovlig api key for Nyheter.";
 
 /* No comment provided by engineer. */
-"Entertainment" = "Underholdning";
+"entertainment" = "Underholdning";
 
 /* No comment provided by engineer. */
-"Health" = "Helse";
+"general" = "Siste nytt";
+
+/* No comment provided by engineer. */
+"health" = "Helse";
 
 /* No comment provided by engineer. */
 "No Internet connection for this device." = "Mangler internet forbindelse for denne enheten.";
@@ -26,17 +29,17 @@
 "Return" = "Tilbake";
 
 /* No comment provided by engineer. */
-"Science" = "Vitenskap";
+"science" = "Vitenskap";
+
+/* No comment provided by engineer. */
+"Select: " = "Velg:";
 
 /* No comment provided by engineer. */
 "Setting" = "Instillinger";
 
 /* No comment provided by engineer. */
-"Sport" = "Sport";
+"sport" = "Sport";
 
 /* No comment provided by engineer. */
-"Technology" = "Teknologi";
-
-/* No comment provided by engineer. */
-"Top headlines" = "Siste nytt";
+"technology" = "Teknologi";
 
