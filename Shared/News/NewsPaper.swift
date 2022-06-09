@@ -52,7 +52,7 @@ struct NewsPaper: View {
             NavigationView {
                 VStack {
                     HStack {
-                        Spacer()
+//                        Spacer()
                         Picker("Select: ", selection: $selection) {
                             ForEach(Option.allCases, id:\.self) { option in
                                 Text(NewsPaper.Option.getTitleFor(title: option))
@@ -100,7 +100,7 @@ struct NewsPaper: View {
                     .refreshable {
                         newsRecords = await RefreshNews()
                     }
-                    .navigationBarTitle(Text(GetHeadline(option: newsType)), displayMode: .automatic)
+//                    .navigationBarTitle(Text(GetHeadline(option: newsType)), displayMode: .automatic)
                     .listStyle(SidebarListStyle())
 #endif
                 } // VStack
