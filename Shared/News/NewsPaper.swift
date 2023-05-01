@@ -72,13 +72,8 @@ struct NewsPaper: View {
 #if os(macOS)
                     List {
                         ForEach(newsRecords) { newsRecord in
-                            let url = URL(string: newsRecord.article_url)
-                            let url1 = URL(string: newsRecord.article_urlToImage)
-                            if url != nil,
-                               url1 != nil {
-                                NavigationLink(destination: SafariView(url: newsRecord.article_url)) {
-                                    NewsPaperRowView(newsRecord: newsRecord, url: url1!)
-                                }
+                            NavigationLink(destination: SafariView(url: newsRecord.article_url)) {
+                                NewsView(title: newsRecord.article_title)
                             }
                         }
                     }
@@ -87,20 +82,14 @@ struct NewsPaper: View {
                     List {
                         ForEach(newsRecords) { newsRecord in
                             let url = URL(string: newsRecord.article_url)
-                            let url1 = URL(string: newsRecord.article_urlToImage)
-                            if url != nil,
-                               url1 != nil {
-                                NavigationLink(destination: SafariView(url: url!)) {
-                                    NewsPaperRowView(newsRecord: newsRecord, url: url1!)
-                                }
-                                
+                            NavigationLink(destination: SafariView(url: url!)) {
+                                NewsView(title: newsRecord.article_title)
                             }
                         }
                     }
                     .refreshable {
                         newsRecords = await RefreshNews()
                     }
-//                    .navigationBarTitle(Text(GetHeadline(option: newsType)), displayMode: .automatic)
                     .listStyle(SidebarListStyle())
 #endif
                 } // VStack
@@ -125,7 +114,7 @@ struct NewsPaper: View {
             NewsPaperApiKey()
         } // if
     } // Body
-    
+
     func RefreshNews() async -> [NewsRecord] {
         var newsRecords = [NewsRecord]()
         
@@ -163,3 +152,14 @@ func GetHeadline(option: String) -> String {
 
     return newsTypeHeadline
 }
+
+struct NewsView: View {
+    let title : String
+    
+    var body: some View {
+        Text(title)
+            .padding()
+            .foregroundColor(.green)
+    }
+}
+    

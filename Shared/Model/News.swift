@@ -15,13 +15,10 @@ struct News: Decodable {
 // MARK: - Article
 struct Article: Decodable {
     var source = Source()
-    var author : String?
+    var author = String()
     var title  = String()
-    var description = String()
     var url = String()
-    var urlToImage = String()
     var publishedAt = String()
-    var content: String?
 }
 
 // MARK: - Source
