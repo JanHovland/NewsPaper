@@ -55,11 +55,7 @@ struct NewsPaperRowView: View {
             
             VStack(alignment: .leading, spacing: 8) {
                 Text(newsRecord.article_title)
-                // Text(newsRecord.article_description)
                     .font(Font.title3.weight(.light))
-                Text(newsRecord.article_content)
-                    .font(Font.callout.weight(.light))
-                    .foregroundColor(.green)
             }
         }
     }
